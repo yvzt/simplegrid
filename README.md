@@ -78,7 +78,7 @@ const settings = {
   },
   minorLines: {
     configuration: {
-      number: 1,
+      number: 4,
       distance: 50,
     },
     attributes: {
