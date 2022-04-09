@@ -19,12 +19,12 @@ class SimpleGrid {
   }
 
   /* 
-    BOUNDINGRECTANGLE:
+    GETBOUNDINGRECTANGLE:
       Returns the bounding rectangle
       Output: 
         Object {x: ___, y: ___, width: ____, height: ____}
   */
-  boundingRectangle() {
+  getBoundingRectangle() {
     return {
       x: this.xmin,
       y: this.ymin,

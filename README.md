@@ -1,5 +1,5 @@
 # simplegrid - A very basic two-dimensional grid using rectangular coordinates
----
+
 simplegrid is a basic two-dimensional grid implementation using rectangular coordinates. A simplegrid object can be instantiated by passing the coordinate of the corner with minimum x and y values, say (x_min, y_min), the width and height of the rectangle. 
 
 Using setOrigin / anchorOrigin it is possible to set an origin point through which x and y axis lines are assumed to pass. getAxes function returns the start and end point coordinates of the horizontal and veritical axis lines recpectively.
@@ -16,12 +16,14 @@ It is also possible to obtain the bounding rectangle of the domain.
 
 To create a grid that starts from (100,100) with a width of 500 and height of 500 units, 
 
-```const aGrid = Simplegrid(100,100,500,500);```
+```const aGrid = new Simplegrid(100,100,500,500);```
 
 To set an origin at the geometric center of this rectangle, 
 
 ```aGrid.setOrigin({x:350, y:350}); ```
+
 or
+
 ```aGrid.anchorOrigin({x:0.5, y:0.5});```
 
 To get the bounding rectangle: 
