@@ -35,6 +35,7 @@ To get major lines along x separated by 50 units by skipping the boundaries and 
 ```aGrid.getMajorLines(50,true,true);```
 
 To get major lines along y separated by 50 units by skipping the boundaries and origin,
+
 ```aGrid.getMajorLines(50,true,true,"y");```
 
 To get 4 minor lines along x (divides the distance between adjacent major lines 5) between two adjacent grid lines separated by 50 units. 
@@ -44,5 +45,7 @@ To get 4 minor lines along x (divides the distance between adjacent major lines 
 To get 4 minor lines along y (divides the distance between adjacent major lines 5) between two adjacent grid lines separated by 50 units. 
 
 ```aGrid.getMinorLines(4,50, "y");```
+
+In the *test_simplegrid.js* example grid is used to create the following svg.
 
 ![Example grid used to create an SVG](./assets/images/example_grid.png?raw=true "Example grid")

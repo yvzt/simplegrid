@@ -18,6 +18,7 @@ const settings = {
   minorLines:{
     stroke:"#0000FF",
     "stroke-width":0.1,
+    "stroke-dasharray": "4 1",
   }  
 };
 
