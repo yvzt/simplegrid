@@ -40,7 +40,7 @@ for (const a of majorLines){
 }
 
 // Draw minor lines, 2 at each interval
-const minorLines = aGrid.getMinorLines(2,50).concat(aGrid.getMinorLines(2,50,"y"));
+const minorLines = aGrid.getMinorLines(4,50).concat(aGrid.getMinorLines(4,50,"y"));
 for (const a of minorLines){
   svg.append(getNode("line", {x1: a[0], y1: a[1], x2: a[2], y2: a[3],...settings.minorLines}));
 }
