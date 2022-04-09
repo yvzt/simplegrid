@@ -1,6 +1,6 @@
-# SimpleGrid - A very basic two-dimensional grid with rectangular coordinates
+# SimpleGrid - A very basic two-dimensional grid in rectangular coordinates
 
-simplegrid is a basic two-dimensional grid implementation using rectangular coordinates. A SimpleGrid object can be instantiated by passing the coordinate of the corner with minimum x and y values, say (x_min, y_min), the width and height of the rectangle. 
+SimpleGrid is a basic two-dimensional grid implementation using rectangular coordinates. A SimpleGrid object can be instantiated by passing the coordinate of the corner with minimum x and y values, say (x_min, y_min), the width and height of the rectangle. 
 
 It is possible to set an origin point through which x and y axis lines are assumed to pass. *axes* function returns the start and end point coordinates of the horizontal and vertical axis lines.
 
@@ -34,19 +34,19 @@ To get the bounding rectangle:
 
 To get major lines along x separated by 50 units by skipping the boundaries and origin,
 
-```aGrid.getMajorLines({distance:50, skipBoundary:true, skipOrigin:true, direction: "x"});```
+```aGrid.majorLines({distance:50, skipBoundary:true, skipOrigin:true, direction: "x"});```
 
 To get major lines along y separated by 50 units by skipping the boundaries and origin,
 
-```aGrid.getMajorLines({distance:50, skipBoundary:true, skipOrigin:true, direction: "x"}});```
+```aGrid.majorLines({distance:50, skipBoundary:true, skipOrigin:true, direction: "y"}});```
 
 To get 4 minor lines along x (divides the distance between adjacent major lines 5) between two adjacent grid lines separated by 50 units. 
 
-```aGrid.getMinorLines({number:4, distance:50, direction:"x"});```
+```aGrid.minorLines({number:4, distance:50, direction:"x"});```
 
 To get 4 minor lines along y (divides the distance between adjacent major lines 5) between two adjacent grid lines separated by 50 units. 
 
-```aGrid.getMinorLines({number:4, distance:50, direction:"x"});```
+```aGrid.minorLines({number:4, distance:50, direction:"y"});```
 
 In the *test_simplegrid.js*, example grid is used to create the following svg step by step. 
 
