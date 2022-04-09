@@ -1,61 +1,124 @@
 // Import SimpleGrid class
 import SimpleGrid from "./simplegrid.js";
 
+/* 
+  Example 1: 
+    This example generates a grid and parses into an SVG.
+
+*/
+
 // Add settings
 const settings = {
+  geometry: { xmin: 100, ymin: 100, width: 500, height: 500 },
   boundingRectangle: {
-    geometry: { xmin: 100, ymin: 100, width: 500, height: 500 },
-    style: "fill:none; stroke:#000000; stroke-width:2"
+    style: "fill:none; stroke:#000000; stroke-width:2",
   },
+  origin: { type: "set", x: 350, y: 350 },
   axes: {
-    stroke:"#FF0000",
-    "stroke-width":2,
+    stroke: "#FF0000",
+    "stroke-width": 2,
   },
-  majorLines:{
-    stroke:"#00FF00",
-    "stroke-width":1,
+  majorLines: {
+    configuration: {
+      distance: 50,
+      skipBoundary: true,
+      skipOrigin: true,
+    },
+    attributes: {
+      stroke: "#00FF00",
+      "stroke-width": 1,
+    },
   },
-  minorLines:{
-    stroke:"#0000FF",
-    "stroke-width":0.1,
-    "stroke-dasharray": "4 1",
-  }  
+  minorLines: {
+    configuration: {
+      number: 1,
+      distance: 50,
+    },
+    attributes: {
+      stroke: "#0000FF",
+      "stroke-width": 0.1,
+      "stroke-dasharray": "4 1",
+    },
+  },
 };
 
 // Create grid
-const aGrid = new SimpleGrid(...Object.values(settings.boundingRectangle.geometry));
-aGrid.setOrigin({ x: 350, y: 350 });
+const aGrid = new SimpleGrid(settings.geometry);
+aGrid.origin(settings.origin);
 
 // Create svg
 const svg = getNode("svg", { width: 700, height: 700 });
 
 // Draw bounding rectangle
 const boundingRectangle = getNode("rect", {
-  ...aGrid.getBoundingRectangle(),
-  style: settings.boundingRectangle.style,
+  ...aGrid.boundingRectangle(),
+  ...settings.boundingRectangle,
 });
 
 // Draw axes in red
-const axes = aGrid.getAxes();
-for (const a of axes){
-  svg.append(getNode("line", {x1: a[0], y1: a[1], x2: a[2], y2: a[3],...settings.axes}));
+const axes = aGrid.axes();
+for (const a in axes) {
+  svg.append(
+    getNode("line", {
+      x1: axes[a][0],
+      y1: axes[a][1],
+      x2: axes[a][2],
+      y2: axes[a][3],
+      ...settings.axes,
+    })
+  );
 }
 
 // Draw major lines, skipping ends and origin
-const majorLines = aGrid.getMajorLines(50, true, true).concat(aGrid.getMajorLines(50, true, true, "y"));
-for (const a of majorLines){
-  svg.append(getNode("line", {x1: a[0], y1: a[1], x2: a[2], y2: a[3],...settings.majorLines}));
+const majorLines = aGrid
+  .majorLines({ ...settings.majorLines.configuration, direction: "x" })
+  .concat(
+    aGrid.majorLines({ ...settings.majorLines.configuration, direction: "y" })
+  );
+for (const a of majorLines) {
+  svg.append(
+    getNode("line", {
+      x1: a[0],
+      y1: a[1],
+      x2: a[2],
+      y2: a[3],
+      ...settings.majorLines.attributes,
+    })
+  );
 }
 
 // Draw minor lines, 2 at each interval
-const minorLines = aGrid.getMinorLines(4,50).concat(aGrid.getMinorLines(4,50,"y"));
-for (const a of minorLines){
-  svg.append(getNode("line", {x1: a[0], y1: a[1], x2: a[2], y2: a[3],...settings.minorLines}));
+const minorLines = aGrid
+  .minorLines({ ...settings.minorLines.configuration, direction: "x" })
+  .concat(aGrid.minorLines({ ...settings.minorLines.configuration, direction: "y" }));
+for (const a of minorLines) {
+  svg.append(
+    getNode("line", {
+      x1: a[0],
+      y1: a[1],
+      x2: a[2],
+      y2: a[3],
+      ...settings.minorLines.attributes,
+    })
+  );
 }
 
 // Append svg to the document
 svg.append(boundingRectangle);
 document.getElementById("container").append(svg);
+
+/*
+  Example 2: 
+  This example uses SVGGROUP static function to generate a grid 
+  through a settings2 object parsed into a SVG group. 
+  Some transformation is applied to the returned group node 
+  through its transform attribute.
+*/
+const svg2 = getNode("svg", { width: 700, height: 700 });
+const gridGroup = SimpleGrid.svgGroup(settings);
+gridGroup.setAttributeNS(null, "transform", "scale(0.5) rotate(-5)");
+svg2.append(gridGroup);
+document.getElementById("container2").append(svg2);
 
 /*
   GETNODE
