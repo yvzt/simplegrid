@@ -1,6 +1,6 @@
-# simplegrid - A very basic two-dimensional grid using rectangular coordinates
+# SimpleGrid - A very basic two-dimensional grid with rectangular coordinates
 
-simplegrid is a basic two-dimensional grid implementation using rectangular coordinates. A simplegrid object can be instantiated by passing the coordinate of the corner with minimum x and y values, say (x_min, y_min), the width and height of the rectangle. 
+simplegrid is a basic two-dimensional grid implementation using rectangular coordinates. A SimpleGrid object can be instantiated by passing the coordinate of the corner with minimum x and y values, say (x_min, y_min), the width and height of the rectangle. 
 
 Using setOrigin / anchorOrigin it is possible to set an origin point through which x and y axis lines are assumed to pass. getAxes function returns the start and end point coordinates of the horizontal and veritical axis lines recpectively.
 
