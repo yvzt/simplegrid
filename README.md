@@ -40,3 +40,5 @@ To get 4 minor lines along x (divides the distance between adjacent major lines 
 
 To get 4 minor lines along y (divides the distance between adjacent major lines 5) between two adjacent grid lines separated by 50 units. 
 ```aGrid.getMinorLines(4,50, "y");```
+
+![Example grid used to create an SVG](./assets/images/example_grid.png?raw=true "Example grid")

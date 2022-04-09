@@ -1,4 +1,7 @@
+// Import SimpleGrid class
 import SimpleGrid from "./simplegrid.js";
+
+// Add settings
 const settings = {
   boundingRectangle: {
     geometry: { xmin: 100, ymin: 100, width: 500, height: 500 },
@@ -21,18 +24,22 @@ const settings = {
 // Create grid
 const aGrid = new SimpleGrid(...Object.values(settings.boundingRectangle.geometry));
 aGrid.setOrigin({ x: 350, y: 350 });
+
 // Create svg
 const svg = getNode("svg", { width: 700, height: 700 });
+
 // Draw bounding rectangle
 const boundingRectangle = getNode("rect", {
   ...aGrid.getBoundingRectangle(),
   style: settings.boundingRectangle.style,
 });
+
 // Draw axes in red
 const axes = aGrid.getAxes();
 for (const a of axes){
   svg.append(getNode("line", {x1: a[0], y1: a[1], x2: a[2], y2: a[3],...settings.axes}));
 }
+
 // Draw major lines, skipping ends and origin
 const majorLines = aGrid.getMajorLines(50, true, true).concat(aGrid.getMajorLines(50, true, true, "y"));
 for (const a of majorLines){
@@ -45,13 +52,10 @@ for (const a of minorLines){
   svg.append(getNode("line", {x1: a[0], y1: a[1], x2: a[2], y2: a[3],...settings.minorLines}));
 }
 
-
+// Append svg to the document
 svg.append(boundingRectangle);
-
-
-
-
 document.getElementById("container").append(svg);
+
 /*
   GETNODE
   Creates an svg node with attributes provided. 
