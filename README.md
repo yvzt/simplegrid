@@ -1,5 +1,5 @@
-# simplegrid
-
+# simplegrid - A very basic two-dimensional grid using rectangular coordinates
+---
 simplegrid is a basic two-dimensional grid implementation using rectangular coordinates. A simplegrid object can be instantiated by passing the coordinate of the corner with minimum x and y values, say (x_min, y_min), the width and height of the rectangle. 
 
 Using setOrigin / anchorOrigin it is possible to set an origin point through which x and y axis lines are assumed to pass. getAxes function returns the start and end point coordinates of the horizontal and veritical axis lines recpectively.
@@ -12,29 +12,29 @@ Specified number of minor lines are placed evenly between adjacent major lines.
 
 It is also possible to obtain the bounding rectangle of the domain.
 
-Example: 
+### Example: 
 
 To create a grid that starts from (100,100) with a width of 500 and height of 500 units, 
 
-const aGrid = Simplegrid(100,100,500,500);
+```const aGrid = Simplegrid(100,100,500,500);```
 
 To set an origin at the geometric center of this rectangle, 
 
-aGrid.setOrigin({x:350, y:350}); 
+```aGrid.setOrigin({x:350, y:350}); ```
 or
-aGrid.anchorOrigin({x:0.5, y:0.5});
+```aGrid.anchorOrigin({x:0.5, y:0.5});```
 
 To get the bounding rectangle: 
-aGrid.getBoundingRectangle();
+```aGrid.getBoundingRectangle();```
 
 To get major lines along x separated by 50 units by skipping the boundaries and origin,
-aGrid.getMajorLines(50,true,true);
+```aGrid.getMajorLines(50,true,true);```
 
 To get major lines along y separated by 50 units by skipping the boundaries and origin,
-aGrid.getMajorLines(50,true,true,"y");
+```aGrid.getMajorLines(50,true,true,"y");```
 
 To get 4 minor lines along x (divides the distance between adjacent major lines 5) between two adjacent grid lines separated by 50 units. 
-aGrid.getMinorLines(4,50);
+```aGrid.getMinorLines(4,50);```
 
 To get 4 minor lines along y (divides the distance between adjacent major lines 5) between two adjacent grid lines separated by 50 units. 
-aGrid.getMinorLines(4,50, "y");
+```aGrid.getMinorLines(4,50, "y");```
